@@ -9,7 +9,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>710,2536</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1773,2536</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="36">
@@ -243,7 +243,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </ui:HttpClient>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[str_workflowName+&quot;TaxID : '&quot;+str_TaxID+&quot;' için '&quot;+item.ToString+&quot;/&quot;+DateTime.Now.AddYears(-1).ToString(&quot;yyyy&quot;)+&quot;' dosyası '&quot;+&quot;Data\&quot;+System.Text.RegularExpressions.Regex.Match(str_DownloadLink,&quot;Report.*&quot;).ToString+&quot;' yoluna indirildi.&quot;]" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[str_workflowName+&quot;TaxID : '&quot;+str_TaxID+&quot;' için '&quot;+item.ToString+&quot;/&quot;+DateTime.Now.AddYears(-1).ToString(&quot;yyyy&quot;)+&quot;' dosyası '&quot;+&quot;Data/Input/&quot;+System.Text.RegularExpressions.Regex.Match(str_DownloadLink,&quot;Report.*&quot;).ToString+&quot;' yoluna indirildi.&quot;]" />
                 </Sequence>
               </If.Then>
               <If.Else>
@@ -268,15 +268,9 @@
     </ui:ForEach>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke MergeExcel workflow" sap:VirtualizedContainerService.HintSize="562,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="MergeExcel.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_str_DataPath">
-          <Literal x:TypeArguments="x:String">Data/Input/</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_str_TaxID">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_TaxID" />
-        </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_str_MergedExcelName">
-          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="str_MergedExcelPath" />
-        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_DataPath">Data/Input/</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_TaxID">[str_TaxID]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_str_MergedExcelName">[str_MergedExcelPath]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" sap2010:Annotation.AnnotationText="Upload Excel Files to get Success Code" BodyFormat="" DisplayName="HTTP Request : Excel" EnableSSLVerification="True" EndPoint="https://acme-test.uipath.com/reports/uploadReport" sap:VirtualizedContainerService.HintSize="562,99" sap2010:WorkflowViewState.IdRef="HttpClient_7" Method="POST" ResponseHeaders="[Dictionary_Headers]" Result="[str_HtmlResult]" StatusCode="[int_StatusCode]" TimeoutMS="20000">
@@ -360,6 +354,6 @@
         <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="384,79" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[str_MergedExcelPath]" />
       </If.Then>
     </If>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Warn" Message="[str_workflowName+&quot;TaxID : '&quot;+str_TaxID+&quot;' için comment '&quot;+str_SuccessCode+&quot;' eklendi.&quot;+Environment.NewLine+&quot; &quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="562,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Warn" Message="[str_workflowName+&quot;TaxID : '&quot;+str_TaxID+&quot;' için comment '&quot;+str_SuccessCode+&quot;' eklendi.&quot;+Environment.NewLine+&quot; &quot;]" />
   </Sequence>
 </Activity>

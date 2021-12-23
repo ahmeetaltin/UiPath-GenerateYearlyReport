@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1209,2532</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>670,2707</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Download_Monthly_Report_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="38">
@@ -53,7 +53,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="27">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="54">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -81,9 +81,10 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Download_Monthly_Report" sap:VirtualizedContainerService.HintSize="680,2467" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Download_Monthly_Report" sap:VirtualizedContainerService.HintSize="680,2642" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_workflowName" />
       <Variable x:TypeArguments="x:Int32" Name="int_StatusCode" />
@@ -104,13 +105,13 @@
       </Assign.Value>
     </Assign>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="638,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[str_workflowName+&quot;Başladı.&quot;]" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Download all excel file from 'https://acme-test.uipath.com/reports/download' for the current TaxID" DataTable="[in_dt_Report]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="638,2144" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Download all excel file from 'https://acme-test.uipath.com/reports/download' for the current TaxID" DataTable="[in_dt_Report]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="638,2319" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body : For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="604,1993" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Body : For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="604,2168" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="str_TaxID" />
               <Variable x:TypeArguments="x:String" Name="str_DownloadLink" />
@@ -123,7 +124,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" sap2010:Annotation.AnnotationText="Get Client Informations with WIID" BodyFormat="application/x-www-form-urlencoded" DisplayName="HTTP Request : WIID" EnableSSLVerification="True" EndPoint="[&quot;https://acme-test.uipath.com/work-items/&quot;+CurrentRow(&quot;WIID&quot;).ToString]" sap:VirtualizedContainerService.HintSize="562,64" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" ResponseHeaders="[Dictionary_Headers]" Result="[str_HtmlResult]" StatusCode="[int_StatusCode]" TimeoutMS="20000">
+            <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" sap2010:Annotation.AnnotationText="Get Client Informations with WIID" BodyFormat="application/x-www-form-urlencoded" DisplayName="HTTP Request : WIID" EnableSSLVerification="True" EndPoint="[&quot;https://acme-test.uipath.com/work-items/&quot;+CurrentRow(&quot;WIID&quot;).ToString]" sap:VirtualizedContainerService.HintSize="562,99" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="GET" ResponseHeaders="[Dictionary_Headers]" Result="[str_HtmlResult]" StatusCode="[int_StatusCode]" TimeoutMS="20000">
               <ui:HttpClient.Attachments>
                 <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
               </ui:HttpClient.Attachments>
@@ -155,19 +156,19 @@
               </Assign.Value>
             </Assign>
             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="562,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[str_workflowName+&quot;TaxID : '&quot;+str_TaxID+&quot;' işlenmeye başladı.&quot;]" />
-            <ui:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" DisplayName="For Each : 12 Months" sap:VirtualizedContainerService.HintSize="562,889" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Enumerable.Range(1,12)]">
+            <ui:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" DisplayName="For Each : 12 Months" sap:VirtualizedContainerService.HintSize="562,959" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Enumerable.Range(1,12)]">
               <ui:ForEach.Body>
                 <ActivityAction x:TypeArguments="x:Int32">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Int32" Name="item" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Sequence : For Each 12 Months" sap:VirtualizedContainerService.HintSize="526,765" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <Sequence DisplayName="Sequence : For Each 12 Months" sap:VirtualizedContainerService.HintSize="526,835" sap2010:WorkflowViewState.IdRef="Sequence_4">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" sap2010:Annotation.AnnotationText="Get Client Informations with WIID" BodyFormat="application/x-www-form-urlencoded" DisplayName="HTTP Request : WIID" EnableSSLVerification="True" EndPoint="https://acme-test.uipath.com/reports/downloadReport" sap:VirtualizedContainerService.HintSize="484,64" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="POST" ResponseHeaders="[Dictionary_Headers]" Result="[str_HtmlResult]" StatusCode="[int_StatusCode]" TimeoutMS="20000">
+                    <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" sap2010:Annotation.AnnotationText="Get Client Informations with WIID" BodyFormat="application/x-www-form-urlencoded" DisplayName="HTTP Request : WIID" EnableSSLVerification="True" EndPoint="https://acme-test.uipath.com/reports/downloadReport" sap:VirtualizedContainerService.HintSize="484,99" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="POST" ResponseHeaders="[Dictionary_Headers]" Result="[str_HtmlResult]" StatusCode="[int_StatusCode]" TimeoutMS="20000">
                       <ui:HttpClient.Attachments>
                         <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                       </ui:HttpClient.Attachments>
@@ -210,7 +211,7 @@
                         </Assign.Value>
                       </Assign>
                     </Sequence>
-                    <If Condition="[not str_DownloadLink.Contains(&quot;No invoices&quot;)]" DisplayName="If : Download if not get error" sap:VirtualizedContainerService.HintSize="484,463" sap2010:WorkflowViewState.IdRef="If_3">
+                    <If Condition="[not str_DownloadLink.Contains(&quot;No invoices&quot;)]" DisplayName="If : Download if not get error" sap:VirtualizedContainerService.HintSize="484,498" sap2010:WorkflowViewState.IdRef="If_3">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -218,7 +219,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <If.Then>
-                        <Sequence DisplayName="Sequence : Download" sap:VirtualizedContainerService.HintSize="376,276" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                        <Sequence DisplayName="Sequence : Download" sap:VirtualizedContainerService.HintSize="376,311" sap2010:WorkflowViewState.IdRef="Sequence_9">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="x:String" Name="str_Deneme" />
                           </Sequence.Variables>
@@ -227,7 +228,7 @@
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" sap2010:Annotation.AnnotationText="Download file" BodyFormat="application/xml" DisplayName="HTTP Request : Download" EnableSSLVerification="True" EndPoint="[str_DownloadLink]" sap:VirtualizedContainerService.HintSize="334,53" sap2010:WorkflowViewState.IdRef="HttpClient_6" Method="GET" ResourcePath="[&quot;Data\&quot;+System.Text.RegularExpressions.Regex.Match(str_DownloadLink,&quot;Report.*&quot;).ToString]" TimeoutMS="6000">
+                          <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResponseHeaders="{x:Null}" Result="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" sap2010:Annotation.AnnotationText="Download file" BodyFormat="application/xml" DisplayName="HTTP Request : Download" EnableSSLVerification="True" EndPoint="[str_DownloadLink]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="HttpClient_6" Method="GET" ResourcePath="[&quot;Data\Input\&quot;+System.Text.RegularExpressions.Regex.Match(str_DownloadLink,&quot;Report.*&quot;).ToString]" TimeoutMS="6000">
                             <ui:HttpClient.Attachments>
                               <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
                             </ui:HttpClient.Attachments>
@@ -249,7 +250,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                           </ui:HttpClient>
-                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[str_workflowName+&quot;TaxID : '&quot;+str_TaxID+&quot;' için '&quot;+item.ToString+&quot;/&quot;+DateTime.Now.AddYears(-1).ToString(&quot;yyyy&quot;)+&quot;' dosyası '&quot;+&quot;Data\&quot;+System.Text.RegularExpressions.Regex.Match(str_DownloadLink,&quot;Report.*&quot;).ToString+&quot;' yoluna indirildi.&quot;]" />
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[str_workflowName+&quot;TaxID : '&quot;+str_TaxID+&quot;' için '&quot;+item.ToString+&quot;/&quot;+DateTime.Now.AddYears(-1).ToString(&quot;yyyy&quot;)+&quot;' dosyası '&quot;+&quot;Data\Input\&quot;+System.Text.RegularExpressions.Regex.Match(str_DownloadLink,&quot;Report.*&quot;).ToString+&quot;' yoluna indirildi.&quot;]" />
                         </Sequence>
                       </If.Then>
                       <If.Else>
@@ -274,12 +275,18 @@
             </ui:ForEach>
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke MergeExcel workflow" sap:VirtualizedContainerService.HintSize="562,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="MergeExcel.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="in_str_DataPath">Data/</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_str_TaxID">[str_TaxID]</InArgument>
-                <OutArgument x:TypeArguments="x:String" x:Key="out_str_MergedExcelName">[str_MergedExcelPath]</OutArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_DataPath">
+                  <Literal x:TypeArguments="x:String">Data/Input/</Literal>
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_TaxID">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_TaxID" />
+                </InArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="out_str_MergedExcelName">
+                  <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="str_MergedExcelPath" />
+                </OutArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" sap2010:Annotation.AnnotationText="Upload Excel Files to get Success Code" BodyFormat="" DisplayName="HTTP Request : Excel" EnableSSLVerification="True" EndPoint="https://acme-test.uipath.com/reports/uploadReport" sap:VirtualizedContainerService.HintSize="562,64" sap2010:WorkflowViewState.IdRef="HttpClient_4" Method="POST" ResponseHeaders="[Dictionary_Headers]" Result="[str_HtmlResult]" StatusCode="[int_StatusCode]" TimeoutMS="20000">
+            <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" sap2010:Annotation.AnnotationText="Upload Excel Files to get Success Code" BodyFormat="" DisplayName="HTTP Request : Excel" EnableSSLVerification="True" EndPoint="https://acme-test.uipath.com/reports/uploadReport" sap:VirtualizedContainerService.HintSize="562,99" sap2010:WorkflowViewState.IdRef="HttpClient_4" Method="POST" ResponseHeaders="[Dictionary_Headers]" Result="[str_HtmlResult]" StatusCode="[int_StatusCode]" TimeoutMS="20000">
               <ui:HttpClient.Attachments>
                 <InArgument x:TypeArguments="x:String" x:Key="0">[str_MergedExcelPath]</InArgument>
               </ui:HttpClient.Attachments>
@@ -321,7 +328,7 @@
                 </Assign.Value>
               </Assign>
             </Sequence>
-            <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" sap2010:Annotation.AnnotationText="Upload Comment" BodyFormat="application/x-www-form-urlencoded" DisplayName="HTTP Request : Comment" EnableSSLVerification="True" EndPoint="[&quot;https://acme-test.uipath.com/work-items/edit/&quot;+CurrentRow(&quot;WIID&quot;).ToString+&quot;%7D&quot;]" sap:VirtualizedContainerService.HintSize="562,53" sap2010:WorkflowViewState.IdRef="HttpClient_5" Method="POST" ResponseHeaders="[Dictionary_Headers]" Result="[str_HtmlResult]" StatusCode="[int_StatusCode]" TimeoutMS="20000">
+            <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" sap2010:Annotation.AnnotationText="Upload Comment" BodyFormat="application/x-www-form-urlencoded" DisplayName="HTTP Request : Comment" EnableSSLVerification="True" EndPoint="[&quot;https://acme-test.uipath.com/work-items/edit/&quot;+CurrentRow(&quot;WIID&quot;).ToString+&quot;%7D&quot;]" sap:VirtualizedContainerService.HintSize="562,88" sap2010:WorkflowViewState.IdRef="HttpClient_5" Method="POST" ResponseHeaders="[Dictionary_Headers]" Result="[str_HtmlResult]" StatusCode="[int_StatusCode]" TimeoutMS="20000">
               <ui:HttpClient.Attachments>
                 <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
               </ui:HttpClient.Attachments>
